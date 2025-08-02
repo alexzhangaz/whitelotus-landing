@@ -220,7 +220,7 @@ const content: Record<Language, Content> = {
     },
     footer: {
       copyright: '© 2025 White Lotus Software',
-      contact: 'Contact: hello@whitelotus.software',
+      contact: 'Contact: hello@whitelotus.space',
     },
   },
   zh: {
@@ -352,7 +352,7 @@ const content: Record<Language, Content> = {
     },
     footer: {
       copyright: '版权所有 © 2025 白莲软件',
-      contact: '联系我们：hello@whitelotus.software',
+      contact: '联系我们：hello@whitelotus.space',
     },
   },
   th: {
@@ -484,7 +484,7 @@ const content: Record<Language, Content> = {
     },
     footer: {
       copyright: 'ลิขสิทธิ์ © 2025 ไวท์โลตัสซอฟต์แวร์',
-      contact: 'อีเมลติดต่อ: hello@whitelotus.software',
+      contact: 'อีเมลติดต่อ: hello@whitelotus.space',
     },
   },
 };
@@ -621,9 +621,12 @@ function App() {
       <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
         {currentContent.hero.subtitle}
       </p>
-<button className="btn btn-primary">
+{/* <button className="btn btn-primary">
         {currentContent.hero.cta}
-      </button>
+      </button> */}
+      <a href="mailto:hello@whitelotus.space?subject=Free Trial Request&body=I would like to start a free trial of White Lotus Software." className="btn btn-primary">
+  {currentContent.hero.cta}
+</a>
     </div>
   </div>
 </section>
@@ -1024,10 +1027,15 @@ function App() {
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-8 text-bg-none">
             {currentContent.cta.title}
           </h3>
-<button className="btn btn-primary">
+{/* <button className="btn btn-primary">
             <span>{currentContent.cta.button}</span>
             <FiArrowRight className="w-5 h-5" />
-          </button>
+          </button> */}
+          <a href="mailto:hello@whitelotus.space?subject=Free Trial Request&body=I would like to start a free trial of White Lotus Software." className="btn btn-primary flex items-center">
+  <span>{currentContent.cta.button}</span>
+  <FiArrowRight className="w-5 h-5" />
+</a>
+
         </div>
       </section>
 
@@ -1073,13 +1081,13 @@ function App() {
                 <div className="flex items-center space-x-2">
                   <FiMail className="w-4 h-4" />
                   <span className="text-gray-400">
-                    hello@whitelotus.software
+                    hello@whitelotus.space
                   </span>
                 </div>
-                <div className="flex items-center space-x-2">
+                {/* <div className="flex items-center space-x-2">
                   <FiPhone className="w-4 h-4" />
                   <span className="text-gray-400">+66 (0) 2-xxx-xxxx</span>
-                </div>
+                </div> */}
                 <div className="flex items-center space-x-2">
                   <FiMapPin className="w-4 h-4" />
                   <span className="text-gray-400">Bangkok, Thailand</span>
