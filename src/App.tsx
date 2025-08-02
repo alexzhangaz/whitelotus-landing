@@ -523,7 +523,7 @@ function App() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
               <img
-                src="../src/media/logo.png"
+                src="/media/logo.png"
                 alt="White Lotus Logo"
                 className="w-16 h-16 object-contain logo"
               />
@@ -602,7 +602,7 @@ function App() {
     <div className="relative flex justify-center">
   <div className="w-3/4 md:w-2/3 lg:w-1/2 rounded-2xl overflow-hidden shadow-xl">
     <video
-      src="/src/media/book-small.mov"
+      src="/media/book-small.mov"
       autoPlay
       muted
       loop
@@ -911,7 +911,7 @@ function App() {
                   > */}
                     {/* <Icon className="w-6 h-6 text-white" /> */}
                     <img
-                        src={`/src/media/feature${index + 1}.png`}
+                        src={`/media/feature${index + 1}.png`}
                         alt={feature.title}
                         className="w-6 h-6 object-contain fearure-img shadow-2xl "
                       />
@@ -1051,7 +1051,7 @@ function App() {
                     : 'White Lotus Software'}
                 </h4> */}
                 <img
-                src="../src/media/logo.png"
+                src="/media/logo.png"
                 alt="White Lotus Logo"
                 className="w-16 h-16 object-contain logo"
               />
