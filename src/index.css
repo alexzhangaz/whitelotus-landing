@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #ec4899, #3b82f6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #db2777, #2563eb);
+}
+
+.logo{
+      /* width: 70%; */
+}
+.bg-gray-800{
+  background-color:white;
+}
+.text-white{
+    background-color:white;
+
+}
+
+.text-bg-none{
+  background: none;
+}
+
+/* 隐藏滚动条但仍可滚 */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+.border-pink-100{
+  /* width: 100px; */
+}
+.features{
+  display: flex
+;
+}
+.fearure-img{
+  width: 50%;
+    height: 100%;
+    border: 2px solid lightgray;
+}
+.feature-content{
+  margin-left: 10px;
+}
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color .2s ease, transform .1s ease, box-shadow .2s ease;
+}
+
+/* 主按钮 - 舒服的蓝紫 */
+.btn-primary {
+  background-color: #5c6ac4; /* 柔和蓝紫 */
+  color: white;
+  box-shadow: 0 6px 18px -4px rgba(92, 106, 196, 0.35);
+}
+.btn-primary:hover {
+  background-color: #4f56b7;
+  transform: translateY(-1px);
+}
+
+/* 次要按钮 - 低饱和灰/白底 */
+.btn-secondary {
+  background-color: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+.btn-secondary:hover {
+  background-color: #e5e7eb;
+}
+
+/* 行动按钮反白版（用于彩色背景） */
+.btn-inverse {
+  background-color: white;
+  color: #5c6ac4;
+  box-shadow: 0 6px 18px -4px rgba(92, 106, 196, 0.25);
+}
+.btn-inverse:hover {
+  background-color: #f9f9fb;
+}
+
+.feature-text{
+ font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.to-blue-500 {
+    --tw-gradient-to: #94baf9 var(--tw-gradient-to-position) !important;
+}
+   
