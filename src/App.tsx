@@ -525,6 +525,7 @@ function App() {
               <img
                 src="/media/logo.png"
                 alt="White Lotus Logo"
+                loading="lazy"
                 className="w-16 h-16 object-contain logo"
               />
               {/* <h1 className="text-xl font-bold bg-gradient-to-r from-pink-600 to-blue-600 bg-clip-text text-transparent">
@@ -916,6 +917,7 @@ function App() {
                     <img
                         src={`/media/feature${index + 1}.png`}
                         alt={feature.title}
+                        loading="lazy"
                         className="w-6 h-6 object-contain fearure-img shadow-2xl "
                       />
                   {/* </div> */}
@@ -1061,6 +1063,7 @@ function App() {
                 <img
                 src="/media/logo.png"
                 alt="White Lotus Logo"
+                loading="lazy"
                 className="w-16 h-16 object-contain logo"
               />
               </div>
