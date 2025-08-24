@@ -220,7 +220,7 @@ const content: Record<Language, Content> = {
     },
     footer: {
       copyright: '© 2025 White Lotus Software',
-      contact: 'Contact: hello@whitelotus.space',
+      contact: 'Contact: info@whitelotus.space',
     },
   },
   zh: {
@@ -352,7 +352,7 @@ const content: Record<Language, Content> = {
     },
     footer: {
       copyright: '版权所有 © 2025 白莲软件',
-      contact: '联系我们：hello@whitelotus.space',
+      contact: '联系我们：info@whitelotus.space',
     },
   },
   th: {
@@ -484,7 +484,7 @@ const content: Record<Language, Content> = {
     },
     footer: {
       copyright: 'ลิขสิทธิ์ © 2025 ไวท์โลตัสซอฟต์แวร์',
-      contact: 'อีเมลติดต่อ: hello@whitelotus.space',
+      contact: 'อีเมลติดต่อ: info@whitelotus.space',
     },
   },
 };
@@ -625,7 +625,7 @@ function App() {
 {/* <button className="btn btn-primary">
         {currentContent.hero.cta}
       </button> */}
-      <a href="mailto:hello@whitelotus.space?subject=Free Trial Request&body=I would like to start a free trial of White Lotus Software." className="btn btn-primary">
+      <a href="mailto:info@whitelotus.space?subject=Free Trial Request&body=I would like to start a free trial of White Lotus Software." className="btn btn-primary">
   {currentContent.hero.cta}
 </a>
     </div>
@@ -1033,7 +1033,7 @@ function App() {
             <span>{currentContent.cta.button}</span>
             <FiArrowRight className="w-5 h-5" />
           </button> */}
-          <a href="mailto:hello@whitelotus.space?subject=Free Trial Request&body=I would like to start a free trial of White Lotus Software." className="btn btn-primary flex items-center">
+          <a href="mailto:info@whitelotus.space?subject=Free Trial Request&body=I would like to start a free trial of White Lotus Software." className="btn btn-primary flex items-center">
   <span>{currentContent.cta.button}</span>
   <FiArrowRight className="w-5 h-5" />
 </a>
@@ -1084,7 +1084,7 @@ function App() {
                 <div className="flex items-center space-x-2">
                   <FiMail className="w-4 h-4" />
                   <span className="text-gray-400">
-                    hello@whitelotus.space
+                    info@whitelotus.space
                   </span>
                 </div>
                 {/* <div className="flex items-center space-x-2">
