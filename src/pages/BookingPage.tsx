@@ -289,8 +289,11 @@ function BookingPage() {
   };
 
   const validatePhone = (phone: string): boolean => {
-    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-    return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+    // const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+    // return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+      const phoneRegex = /^(08\d{8}|\+66\d{9})$/;
+  return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+
   };
 
   const validateForm = (): boolean => {
@@ -332,6 +335,15 @@ function BookingPage() {
     }
 
     setIsSubmitting(true);
+
+    // 追踪：Google Analytics 事件
+if (window.gtag) {
+  window.gtag('event', 'generate_lead', {
+    event_category: 'booking',
+    event_label: 'Free Trial Form',
+    value: 1
+  });
+}
 
     try {
       // 方法1：使用fetch with no-cors（推荐）
