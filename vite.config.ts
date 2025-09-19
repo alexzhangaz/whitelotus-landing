@@ -15,7 +15,10 @@ import reactRefresh from '@vitejs/plugin-react-refresh';
 export default defineConfig({
   plugins: [reactRefresh()],
   build: {
-    target: 'es2019' // 保守一点
-  }
+    target: 'es2019', // 保守一点
+    outDir: 'dist',
+    assetsDir: 'assets'
+  },
+  base: './' // 确保资源路径正确
 });
 
