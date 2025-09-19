@@ -100,7 +100,7 @@ const content: Record<Language, Content> = {
     hero: {
       title: 'All-in-One Booking & Operations Platform',
       subtitle:
-        'Member, coach, room, payment, multi-tenant, smart notifications, and analytics—unified for fitness & spa businesses.',
+        'Member, coach, room, payment, multi-tenant, smart notifications, and analytics—unified for massage, fitness & spa businesses.',
       cta: 'Start Free Trial',
     },
     features: {
@@ -625,9 +625,9 @@ function App() {
 {/* <button className="btn btn-primary">
         {currentContent.hero.cta}
       </button> */}
-      <a href="mailto:info@whitelotus.space?subject=Free Trial Request&body=I would like to start a free trial of White Lotus Software." className="btn btn-primary">
-  {currentContent.hero.cta}
-</a>
+      <a href="/booking" className="btn btn-primary">
+        {currentContent.hero.cta}
+      </a>
     </div>
   </div>
 </section>
@@ -1033,10 +1033,10 @@ function App() {
             <span>{currentContent.cta.button}</span>
             <FiArrowRight className="w-5 h-5" />
           </button> */}
-          <a href="mailto:info@whitelotus.space?subject=Free Trial Request&body=I would like to start a free trial of White Lotus Software." className="btn btn-primary flex items-center">
-  <span>{currentContent.cta.button}</span>
-  <FiArrowRight className="w-5 h-5" />
-</a>
+          <a href="/booking" className="btn btn-primary flex items-center">
+            <span>{currentContent.cta.button}</span>
+            <FiArrowRight className="w-5 h-5" />
+          </a>
 
         </div>
       </section>
