@@ -291,8 +291,11 @@ function BookingPage() {
   const validatePhone = (phone: string): boolean => {
     // const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
     // return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
-      const phoneRegex = /^(08\d{8}|\+66\d{9})$/;
-  return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+  //     const phoneRegex = /^(08\d{8}|\+66\d{9})$/;
+  // return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+  const phoneRegex = /^[\d\+\-\s\(\)]+$/;
+return phoneRegex.test(phone) && phone.replace(/[\s\-\(\)]/g, '').length >= 6;
+
 
   };
 
