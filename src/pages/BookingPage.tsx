@@ -1,21 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { 
-  FiArrowLeft, 
-  FiUser, 
-  FiMail, 
-  FiPhone, 
-  FiHome, 
-  FiCheckCircle,
-  FiUsers,
-  FiClock,
-  FiCalendar,
-  FiBox,
-  FiCreditCard,
-  FiLayers,
-  FiBell,
-  FiTrendingUp
-} from 'react-icons/fi';
+// icons removed to avoid type issues; using plain text/emojis for clarity
 
 type Language = 'en' | 'zh' | 'th';
 
@@ -25,13 +10,19 @@ interface BookingContent {
   hero: {
     title: string;
     subtitle: string;
-    cta: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
+    trialNote: string;
   };
+  valueBullets: string[];
+  trust: string;
+  privacy: string;
   form: {
     name: string;
-    email: string;
     phone: string;
-    company: string;
+    industry: string;
+    companyOpt: string;
+    emailOpt: string;
     submit: string;
     submitting: string;
   };
@@ -42,15 +33,8 @@ interface BookingContent {
   };
   validation: {
     required: string;
-    emailInvalid: string;
     phoneInvalid: string;
-  };
-  features: {
-    title: string;
-    items: {
-      title: string;
-      description: string;
-    }[];
+    emailInvalid: string;
   };
 }
 
@@ -58,210 +42,134 @@ interface BookingContent {
 
 const content: Record<Language, BookingContent> = {
   en: {
-    title: 'Start Your Free Trial',
-    subtitle: 'Get access to our all-in-one booking and operations platform',
+    title: 'Start Free Trial',
+    subtitle: '0 cost | Full features for 7 days | Cancel anytime',
     hero: {
-      title: 'All-in-One Booking & Operations Platform',
-      subtitle: 'Member, coach, room, payment, multi-tenant, smart notifications, and analytics—unified for massage, fitness & spa businesses.',
-      cta: 'Start Free Trial'
+      title: 'Free Trial 7 Days | All-in-one Booking Ops Platform',
+      subtitle: 'Reduce booking conflicts, automate scheduling, and see revenue in one place.',
+      ctaPrimary: 'Start Free Trial',
+      ctaSecondary: 'See What You Get',
+      trialNote: 'No credit card needed. Full access for 7 days.'
     },
+    valueBullets: [
+      'Smart Booking: customer self-book, auto conflict prevention',
+      'Faster Ops: auto scheduling, reminders, check-in',
+      'Insights: daily bookings and revenue at a glance',
+      'Multi-language and multi-branch ready'
+    ],
+    trust: 'Trusted by growing massage, fitness and spa businesses',
+    privacy: 'Your info is only used to set up the trial and will never be shared.',
     form: {
       name: 'Full Name',
-      email: 'Email Address',
       phone: 'Phone Number',
-      company: 'Company (Optional)',
+      industry: 'Industry',
+      companyOpt: 'Company (Optional)',
+      emailOpt: 'Email (Optional)',
       submit: 'Start Free Trial',
-      submitting: 'Starting Trial...'
+      submitting: 'Starting...'
     },
     success: {
-      title: 'Trial Started Successfully!',
-      message: 'Thank you for your interest! We\'ll contact you within 24 hours to set up your trial account.',
+      title: 'Trial Request Submitted!',
+      message: 'Thanks! We will contact you within 24 hours to activate your trial.',
       backHome: 'Back to Home'
     },
     validation: {
       required: 'This field is required',
-      emailInvalid: 'Please enter a valid email address',
-      phoneInvalid: 'Please enter a valid phone number'
-    },
-    features: {
-      title: 'Everything you need to manage bookings',
-      items: [
-        {
-          title: 'Member & VIP Management',
-          description: 'Register members, manage VIP tiers, loyalty, and flexible recharge rules.',
-        },
-        {
-          title: 'Staff Scheduling',
-          description: 'Dynamic availability, shift creation, and conflict detection to avoid double bookings.',
-        },
-        {
-          title: 'Intelligent Booking',
-          description: 'Online appointments with real-time availability and lifecycle status control.',
-        },
-        {
-          title: 'Room & Facility Control',
-          description: 'Reserve rooms, track usage, monitor cleaning and occupancy.',
-        },
-        {
-          title: 'Payment Ecosystem',
-          description: 'Omise integration, offline confirmation, gift cards, VIP top-ups, and refunds.',
-        },
-        {
-          title: 'Multi-Tenant Architecture',
-          description: 'Multiple gyms/spas run in isolated environments with separated data.',
-        },
-        {
-          title: 'Real-Time Notifications',
-          description: 'Email, SMS, in-app, and WebSocket push to keep everyone informed instantly.',
-        },
-        {
-          title: 'Analytics & Insights',
-          description: 'Membership growth, revenue breakdown, coach performance, and space utilization.',
-        },
-      ],
+      phoneInvalid: 'Please enter a valid phone number',
+      emailInvalid: 'Please enter a valid email address'
     }
   },
   zh: {
     title: '开始免费试用',
-    subtitle: '获取我们的一体化预约与运营平台访问权限',
+    subtitle: '0成本 | 7天全部功能 | 随时可停',
     hero: {
-      title: '一体化预约与运营平台',
-      subtitle: '会员、教练、房间、支付、多租户、智能通知与分析——为按摩，健身与美容行业统一打造。',
-      cta: '开始免费试用'
+      title: '免费试用7天｜一体化预约运营系统',
+      subtitle: '减少预约冲突，自动排班，营收数据一目了然。',
+      ctaPrimary: '立即免费试用',
+      ctaSecondary: '了解可体验内容',
+      trialNote: '无需信用卡，7天全功能体验。'
     },
+    valueBullets: [
+      '智能预约：用户自助下单，系统自动防冲突',
+      '运营提效：自动排班、提醒、签到',
+      '数据看板：预约量与营收实时可见',
+      '多语言多门店支持'
+    ],
+    trust: '被多家按摩/健身/美容门店选择与信赖',
+    privacy: '你的信息仅用于开通试用，绝不外泄。',
     form: {
       name: '姓名',
-      email: '邮箱地址',
-      phone: '电话号码',
-      company: '公司名称（选填）',
+      phone: '手机号',
+      industry: '行业',
+      companyOpt: '公司（选填）',
+      emailOpt: '邮箱（选填）',
       submit: '开始免费试用',
-      submitting: '正在启动试用...'
+      submitting: '正在提交...'
     },
     success: {
-      title: '试用启动成功！',
-      message: '感谢您的关注！我们将在24小时内联系您，为您设置试用账户。',
+      title: '试用申请已提交！',
+      message: '感谢关注！我们将在24小时内联系你，开通试用。',
       backHome: '返回首页'
     },
     validation: {
-      required: '此字段为必填项',
-      emailInvalid: '请输入有效的邮箱地址',
-      phoneInvalid: '请输入有效的电话号码'
-    },
-    features: {
-      title: '预约管理所需的一切功能',
-      items: [
-        {
-          title: '会员 & VIP 管理',
-          description: '会员注册、VIP等级、充值规则与忠诚度管理。',
-        },
-        {
-          title: '教练排班',
-          description: '动态可用、排班设置、冲突检测，避免重复预约。',
-        },
-        {
-          title: '智能预约',
-          description: '在线预约，实时可用性、状态生命周期管理。',
-        },
-        {
-          title: '房间与设施管理',
-          description: '房间预约、使用跟踪、清洁与占用监控。',
-        },
-        {
-          title: '支付生态',
-          description: '集成Omise、线下确认、礼品卡、VIP充值与退款。',
-        },
-        {
-          title: '多租户架构',
-          description: '多个商家数据隔离运行，彼此独立安全。',
-        },
-        {
-          title: '实时通知',
-          description: '邮件、短信、站内信与 WebSocket 推送，信息即时到达。',
-        },
-        {
-          title: '数据洞察',
-          description: '会员增长、教练绩效、房间利用率的可视化分析。',
-        },
-      ],
+      required: '此项为必填',
+      phoneInvalid: '请输入有效的手机号',
+      emailInvalid: '请输入有效的邮箱地址'
     }
   },
   th: {
     title: 'เริ่มทดลองใช้ฟรี',
-    subtitle: 'เข้าถึงแพลตฟอร์มจองและปฏิบัติงานครบวงจรของเรา',
+    subtitle: 'ใช้ฟรี 7 วัน ครบทุกฟีเจอร์ ยกเลิกได้ทุกเวลา',
     hero: {
-      title: 'แพลตฟอร์มจองและปฏิบัติงานครบวงจร',
-      subtitle: 'สมาชิก โค้ช ห้อง ระบบชำระเงิน หลายผู้เช่า แจ้งเตือนอัจฉริยะ และการวิเคราะห์—บริการครบวงจรสำหรับร้านนวด ฟิตเนส และสปา',
-      cta: 'เริ่มทดลองใช้ฟรี'
+      title: 'ทดลองใช้ฟรี 7 วัน | แพลตฟอร์มจองและปฏิบัติงานครบวงจร',
+      subtitle: 'ลดการชนกันของตาราง อัตโนมัติเรื่องกะงาน ดูรายได้ได้ในที่เดียว',
+      ctaPrimary: 'เริ่มทดลองใช้ฟรี',
+      ctaSecondary: 'ดูสิ่งที่คุณจะได้ลอง',
+      trialNote: 'ไม่ต้องใช้บัตรเครดิต ใช้ได้ครบทุกฟีเจอร์ 7 วัน'
     },
+    valueBullets: [
+      'จองอัจฉริยะ: ลูกค้าจองเอง ระบบกันชนซ้ำ',
+      'ทำงานไวขึ้น: จัดกะ อัปเดต แจ้งเตือนอัตโนมัติ',
+      'ข้อมูลชัดเจน: ดูยอดจองและรายได้แบบเรียลไทม์',
+      'รองรับหลายภาษา หลายสาขา'
+    ],
+    trust: 'เป็นที่ไว้วางใจจากธุรกิจนวด ฟิตเนส และสปาที่กำลังเติบโต',
+    privacy: 'ข้อมูลของคุณใช้เพื่อเปิดทดลองเท่านั้น และจะไม่ถูกเปิดเผย',
     form: {
       name: 'ชื่อ-นามสกุล',
-      email: 'ที่อยู่อีเมล',
-      phone: 'หมายเลขโทรศัพท์',
-      company: 'บริษัท (ไม่บังคับ)',
+      phone: 'เบอร์โทร',
+      industry: 'ประเภทธุรกิจ',
+      companyOpt: 'บริษัท (ไม่บังคับ)',
+      emailOpt: 'อีเมล (ไม่บังคับ)',
       submit: 'เริ่มทดลองใช้ฟรี',
-      submitting: 'กำลังเริ่มทดลอง...'
+      submitting: 'กำลังส่ง...'
     },
     success: {
-      title: 'เริ่มทดลองใช้สำเร็จ!',
-      message: 'ขอบคุณสำหรับความสนใจ! เราจะติดต่อคุณภายใน 24 ชั่วโมงเพื่อตั้งค่าบัญชีทดลองใช้',
+      title: 'ส่งคำขอทดลองใช้แล้ว!',
+      message: 'ขอบคุณค่ะ/ครับ เราจะติดต่อกลับภายใน 24 ชั่วโมงเพื่อเปิดใช้งาน',
       backHome: 'กลับหน้าแรก'
     },
     validation: {
-      required: 'ฟิลด์นี้จำเป็นต้องกรอก',
-      emailInvalid: 'กรุณากรอกที่อยู่อีเมลที่ถูกต้อง',
-      phoneInvalid: 'กรุณากรอกหมายเลขโทรศัพท์ที่ถูกต้อง'
-    },
-    features: {
-      title: 'ทุกสิ่งที่คุณต้องการในการจัดการการจอง',
-      items: [
-        {
-          title: 'การจัดการสมาชิก & VIP',
-          description: 'ลงทะเบียนสมาชิก จัดระดับ VIP กฎเติมเงินและความภักดี',
-        },
-        {
-          title: 'ตารางโค้ช',
-          description: 'ความพร้อมที่ปรับได้แบบไดนามิก การจัดกะ และการตรวจสอบความขัดแย้ง',
-        },
-        {
-          title: 'การจองอัจฉริยะ',
-          description: 'การนัดหมายออนไลน์พร้อมสถานะแบบเรียลไทม์และการจัดการวงจรชีวิต',
-        },
-        {
-          title: 'การควบคุมห้อง',
-          description: 'สำรองห้อง ติดตามการใช้งาน ตรวจสอบความสะอาดและการครอบครอง',
-        },
-        {
-          title: 'ระบบการชำระเงิน',
-          description: 'รวม Omise, การยืนยันออฟไลน์ บัตรของขวัญ เติมเงิน VIP และการคืนเงิน',
-        },
-        {
-          title: 'โครงสร้างหลายผู้เช่า',
-          description: 'หลายยิม/สปาแยกข้อมูลอย่างสมบูรณ์ปลอดภัย',
-        },
-        {
-          title: 'การแจ้งเตือนแบบเรียลไทม์',
-          description: 'อีเมล ข้อความ สายในแอป และการผลักดัน WebSocket',
-        },
-        {
-          title: 'ข้อมูลเชิงลึกจากข้อมูล',
-          description: 'ติดตามการเติบโตของสมาชิก ผลงานโค้ช และการใช้ห้อง',
-        },
-      ],
+      required: 'จำเป็นต้องกรอก',
+      phoneInvalid: 'กรุณากรอกเบอร์โทรที่ถูกต้อง',
+      emailInvalid: 'กรุณากรอกอีเมลที่ถูกต้อง'
     }
   }
 };
 
 interface FormData {
   name: string;
-  email: string;
   phone: string;
-  company: string;
+  industry: string;
+  company?: string;
+  email?: string;
 }
 
 interface FormErrors {
   name?: string;
-  email?: string;
   phone?: string;
+  industry?: string;
+  email?: string;
 }
 
 function BookingPage() {
@@ -270,12 +178,13 @@ function BookingPage() {
   const handleBackToHome = () => {
     history.push('/');
   };
-  const [language, setLanguage] = useState<Language>('zh');
+  const [language, setLanguage] = useState<Language>('th');
   const [formData, setFormData] = useState<FormData>({
     name: '',
-    email: '',
     phone: '',
-    company: ''
+    industry: '',
+    company: '',
+    email: ''
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -284,6 +193,7 @@ function BookingPage() {
   const currentContent = content[language];
 
   const validateEmail = (email: string): boolean => {
+    if (!email) return true;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
@@ -306,9 +216,11 @@ return phoneRegex.test(phone) && phone.replace(/[\s\-\(\)]/g, '').length >= 6;
       newErrors.name = currentContent.validation.required;
     }
 
-    if (!formData.email.trim()) {
-      newErrors.email = currentContent.validation.required;
-    } else if (!validateEmail(formData.email)) {
+    if (!formData.industry.trim()) {
+      newErrors.industry = currentContent.validation.required;
+    }
+
+    if (formData.email && !validateEmail(formData.email)) {
       newErrors.email = currentContent.validation.emailInvalid;
     }
 
@@ -358,9 +270,10 @@ if (window.gtag) {
         },
         body: JSON.stringify({
           name: formData.name,
-          email: formData.email,
           phone: formData.phone,
+          industry: formData.industry,
           company: formData.company,
+          email: formData.email,
           language: language,
           timestamp: new Date().toISOString(),
           source: 'booking_page'
@@ -384,9 +297,10 @@ if (window.gtag) {
         
         const data = {
           name: formData.name,
-          email: formData.email,
           phone: formData.phone,
-          company: formData.company,
+          industry: formData.industry,
+          company: formData.company || '',
+          email: formData.email || '',
           language: language,
           timestamp: new Date().toISOString(),
           source: 'booking_page'
@@ -416,29 +330,15 @@ if (window.gtag) {
     }
   };
 
-  const getLanguageFlag = (lang: Language) => {
-    switch (lang) {
-      case 'en': return '🇺🇸';
-      case 'zh': return '🇨🇳';
-      case 'th': return '🇹🇭';
-    }
-  };
-
-  const getLanguageName = (lang: Language) => {
-    switch (lang) {
-      case 'en': return 'English';
-      case 'zh': return '中文';
-      case 'th': return 'ไทย';
-    }
-  };
+  // language helpers not required; keeping UI minimal
 
   if (isSuccess) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-pink-50 via-blue-50 to-white flex items-center justify-center px-4">
         <div className="max-w-md w-full">
           <div className="bg-white rounded-2xl p-8 shadow-xl text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <FiCheckCircle className="w-8 h-8 text-green-500" />
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 text-green-600 text-3xl">
+              ✓
             </div>
             <h1 className="text-2xl font-bold text-gray-900 mb-4">
               {currentContent.success.title}
@@ -473,20 +373,12 @@ if (window.gtag) {
             </Link>
 
             <div className="flex items-center space-x-4">
-              {/* <Link
-                to="/"
+              <button
+                onClick={handleBackToHome}
                 className="flex items-center text-gray-600 hover:text-pink-600 transition-colors"
               >
-                <FiArrowLeft className="w-4 h-4 mr-2" />
-                {language === 'zh' ? '返回首页' : language === 'th' ? 'กลับหน้าแรก' : 'Back to Home'}
-              </Link> */}
-              <button
-  onClick={handleBackToHome}
-  className="flex items-center text-gray-600 hover:text-pink-600 transition-colors"
->
-  <FiArrowLeft className="w-4 h-4 mr-2" />
-  {language === 'zh' ? '返回首页' : language === 'th' ? 'กลับหน้าแรก' : 'Back to Home'}
-</button>
+                ← {language === 'zh' ? '返回首页了解更多' : language === 'th' ? 'กลับหน้าแรก' : 'Back to Home'}
+              </button>
 
               <div className="relative">
                 <select
@@ -494,118 +386,91 @@ if (window.gtag) {
                   onChange={(e) => setLanguage(e.target.value as Language)}
                   className="appearance-none btn btn-primary text-white px-4 py-2 rounded-lg text-sm font-medium cursor-pointer"
                 >
-                  <option value="en">🇺🇸 EN</option>
-                  <option value="zh">🇨🇳 中文</option>
                   <option value="th">🇹🇭 ไทย</option>
+                  <option value="zh">🇨🇳 中文</option>
+                  <option value="en">🇺🇸 EN</option>
                 </select>
               </div>
+              <button
+                onClick={() => {
+                  const formSection = document.getElementById('booking-form');
+                  if (formSection) {
+                    formSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="btn btn-primary"
+              >
+                {content[language].hero.ctaPrimary}
+              </button>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Hero Section - 复制自主页 */}
-      <section
-        id="home"
-        className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white"
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-pink-200/30 via-blue-200/30 to-purple-200/30"></div>
-
-        <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          {/* 左边：视频 */}
-          <div className="relative flex justify-center">
-            <div className="w-3/4 md:w-2/3 lg:w-1/2 rounded-2xl overflow-hidden shadow-xl">
-              <video
-                src="/media/book-small.mov"
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-full object-cover rounded-2xl"
-              />
+      {/* Hero Section */}
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          <div>
+            <div className="inline-flex items-center text-xs font-semibold text-pink-600 bg-pink-50 px-3 py-1 rounded-full mb-4">
+              ⚡ {currentContent.subtitle}
             </div>
-          </div>
-
-          {/* 右边：内容 */}
-          <div className="relative text-center md:text-left">
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {currentContent.hero.title}
-            </h2>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
-              {currentContent.hero.subtitle}
-            </p>
-            <button 
-              onClick={() => {
-                const formSection = document.getElementById('booking-form');
-                if (formSection) {
-                  formSection.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-              className="btn btn-primary"
-            >
-              {currentContent.hero.cta}
-            </button>
+            </h1>
+            <p className="text-gray-700 text-lg mb-6">{currentContent.hero.subtitle}</p>
+            <div className="flex flex-wrap gap-3 mb-6">
+              <button
+                onClick={() => {
+                  const formSection = document.getElementById('booking-form');
+                  if (formSection) formSection.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="btn btn-primary"
+              >
+                {currentContent.hero.ctaPrimary}
+              </button>
+              <button
+                onClick={() => {
+                  const valueSection = document.getElementById('value');
+                  if (valueSection) valueSection.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="btn btn-secondary"
+              >
+                {currentContent.hero.ctaSecondary}
+              </button>
+            </div>
+            <div className="text-sm text-gray-500 flex items-center">🛡️ {currentContent.hero.trialNote}</div>
+          </div>
+          <div className="bg-gradient-to-br from-pink-50 to-blue-50 border border-pink-100 rounded-2xl p-6">
+            <ul className="space-y-3">
+              {(() => {
+                const extraTh: string[] = [
+                  'แพลตฟอร์มการจองและการดำเนินการแบบบูรณาการสำหรับร้านนวดและคลินิก',
+                  'ไม่จำเป็นต้องให้บริการลูกค้า และลูกค้าใช้เวลาเพียง 2 นาทีในการกรอกการจองและชำระเงิน',
+                  'ระบบจองออนไลน์ที่ครอบคลุมสำหรับร้านนวด ศูนย์ออกกำลังกาย และคลินิก',
+                  'ระบบสมาชิกแบบครบวงจร ทั้งการลงทะเบียนสมาชิก การจัดการระดับ VIP ความภักดี และกฎการเติมเงินที่ยืดหยุ่น เป็นต้น',
+                  'ระบบนิเวศการชำระเงินที่สมบูรณ์แบบ - การบูรณาการ Omise รวมถึงบัตรเครดิต Line Pay, True Money ฯลฯ',
+                  'ระบบการจัดการแบ็คเอนด์อันทรงพลัง - รวมถึงการจัดตารางพนักงาน การจองอัจฉริยะ สถาปัตยกรรมผู้เช่าหลายราย การแจ้งเตือนแบบเรียลไทม์ ฯลฯ',
+                ];
+                const list = language === 'th' ? [...currentContent.valueBullets, ...extraTh] : currentContent.valueBullets;
+                return list;
+              })().map((b, i) => (
+                <li key={i} className="flex items-start text-gray-800">
+                  <span className="mr-3 text-green-600">✓</span>
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white/50">
-        <div className="max-w-7xl mx-auto">
-          <h3 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-16">
-            {currentContent.features.title}
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {currentContent.features.items.map((feature, index) => {
-              const icons = [
-                FiUsers,
-                FiClock,
-                FiCalendar,
-                FiBox,
-                FiCreditCard,
-                FiLayers,
-                FiBell,
-                FiTrendingUp,
-              ];
-              const Icon = icons[index];
-
-              return (
-                <div
-                  key={index}
-                  className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border border-pink-100 features"
-                >
-                  <img
-                    src={`/media/feature${index + 1}.png`}
-                    alt={feature.title}
-                    loading="lazy"
-                    className="w-6 h-6 object-contain fearure-img shadow-2xl"
-                  />
-                  <div className="feature-content">
-                    <h4 className="text-xl font-semibold text-gray-900 mb-3">
-                      {feature.title}
-                    </h4>
-                    <p className="text-gray-600 leading-relaxed feature-text">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Main Content */}
-      <main id="booking-form" className="flex items-center justify-center px-4 py-12">
+      {/* Trial Form */}
+      <main id="booking-form" className="flex items-center justify-center px-4 py-8">
         <div className="max-w-md w-full">
           <div className="bg-white rounded-2xl p-8 shadow-xl">
-            <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                {currentContent.title}
-              </h1>
-              <p className="text-gray-600">
-                {currentContent.subtitle}
-              </p>
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">{currentContent.title}</h2>
+              <p className="text-gray-600 text-sm">{currentContent.subtitle}</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -615,7 +480,7 @@ if (window.gtag) {
                   {currentContent.form.name} *
                 </label>
                 <div className="relative">
-                  <FiUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">👤</span>
                   <input
                     type="text"
                     value={formData.name}
@@ -631,35 +496,13 @@ if (window.gtag) {
                 )}
               </div>
 
-              {/* Email Field */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {currentContent.form.email} *
-                </label>
-                <div className="relative">
-                  <FiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                  <input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
-                    className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-colors ${
-                      errors.email ? 'border-red-300' : 'border-gray-300'
-                    }`}
-                    placeholder={currentContent.form.email}
-                  />
-                </div>
-                {errors.email && (
-                  <p className="mt-1 text-sm text-red-600">{errors.email}</p>
-                )}
-              </div>
-
               {/* Phone Field */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   {currentContent.form.phone} *
                 </label>
                 <div className="relative">
-                  <FiPhone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">📞</span>
                   <input
                     type="tel"
                     value={formData.phone}
@@ -675,21 +518,65 @@ if (window.gtag) {
                 )}
               </div>
 
-              {/* Company Field */}
+              {/* Industry Field */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {currentContent.form.company}
+                  {currentContent.form.industry} *
                 </label>
                 <div className="relative">
-                  <FiHome className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">🏷️</span>
+                  <input
+                    type="text"
+                    value={formData.industry}
+                    onChange={(e) => handleInputChange('industry', e.target.value)}
+                    className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-colors ${
+                      errors.industry ? 'border-red-300' : 'border-gray-300'
+                    }`}
+                    placeholder={currentContent.form.industry}
+                  />
+                </div>
+                {errors.industry && (
+                  <p className="mt-1 text-sm text-red-600">{errors.industry}</p>
+                )}
+              </div>
+
+              {/* Company Field (Optional) */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {currentContent.form.companyOpt}
+                </label>
+                <div className="relative">
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">🏢</span>
                   <input
                     type="text"
                     value={formData.company}
                     onChange={(e) => handleInputChange('company', e.target.value)}
                     className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-colors"
-                    placeholder={currentContent.form.company}
+                    placeholder={currentContent.form.companyOpt}
                   />
                 </div>
+              </div>
+
+              {/* Email Field (Optional) */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {currentContent.form.emailOpt}
+                </label>
+                <div className="relative">
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">✉️</span>
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-colors ${
+                      errors.email ? 'border-red-300' : 'border-gray-300'
+                    }`}
+                    placeholder={currentContent.form.emailOpt}
+                  />
+                </div>
+                {errors.email && (
+                  <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+                )}
               </div>
 
               {/* Submit Button */}
@@ -701,9 +588,86 @@ if (window.gtag) {
                 {isSubmitting ? currentContent.form.submitting : currentContent.form.submit}
               </button>
             </form>
+            <div className="mt-4 text-xs text-gray-500 flex items-start">🛡️ {currentContent.privacy}</div>
           </div>
         </div>
       </main>
+
+      {/* Value section for anchor */}
+      <section id="value" className="px-4 pb-16">
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-white rounded-2xl p-6 border border-pink-100">
+            <div className="flex items-center text-gray-700 mb-4">
+              <span className="mr-2">📈</span>
+              <span className="font-semibold">{currentContent.trust}</span>
+            </div>
+            <ul className="grid md:grid-cols-2 gap-3">
+              {currentContent.valueBullets.map((b, i) => (
+                <li key={i} className="flex items-start text-gray-800">
+                  <span className="mr-3 text-green-600">✓</span>
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+      {/* Footer (copied from home, simplified icons) */}
+      <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <img src="/media/logo.png" alt="White Lotus Logo" loading="lazy" className="w-16 h-16 object-contain logo" />
+              </div>
+              <p className="text-gray-400">
+                {language === 'en' && 'Streamlining appointment booking and operations for fitness & wellness businesses.'}
+                {language === 'zh' && '为健身与养生行业简化预约与运营流程。'}
+                {language === 'th' && 'ปรับปรุงระบบการจองและการดำเนินงานสำหรับธุรกิจฟิตเนสและสุขภาพ.'}
+              </p>
+            </div>
+            <div>
+              <h5 className="text-lg font-semibold mb-4">
+                {language === 'en' && 'Contact'}
+                {language === 'zh' && '联系我们'}
+                {language === 'th' && 'ติดต่อ'}
+              </h5>
+              <div className="space-y-2 text-gray-400">
+                <div>✉️ info@whitelotus.space</div>
+                <div>📍 Bangkok, Thailand</div>
+              </div>
+            </div>
+            <div>
+              <h5 className="text-lg font-semibold mb-4">
+                {language === 'en' && 'Languages'}
+                {language === 'zh' && '语言支持'}
+                {language === 'th' && 'ภาษาที่รองรับ'}
+              </h5>
+              <div className="flex space-x-4">
+                {(['th','zh','en'] as Language[]).map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => setLanguage(lang)}
+                    className={`btn btn-primary ${language === lang ? 'bg-gradient-to-r from-pink-500 to-blue-500 text-white' : 'bg-gray-800 text-gray-400 hover:text-white'}`}
+                  >
+                    {lang === 'th' && '🇹🇭 ไทย'}
+                    {lang === 'zh' && '🇨🇳 中文'}
+                    {lang === 'en' && '🇺🇸 EN'}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
+            <p>
+              {language === 'en' && '© 2025 White Lotus Software'}
+              {language === 'zh' && '版权所有 © 2025 白莲软件'}
+              {language === 'th' && 'ลิขสิทธิ์ © 2025 ไวท์โลตัสซอฟต์แวร์'}
+            </p>
+            <p className="mt-2">info@whitelotus.space</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
