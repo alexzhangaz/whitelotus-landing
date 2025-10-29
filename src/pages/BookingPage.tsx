@@ -55,16 +55,22 @@ const content: Record<Language, BookingContent> = {
       'Smart Booking: customer self-book, auto conflict prevention',
       'Faster Ops: auto scheduling, reminders, check-in',
       'Insights: daily bookings and revenue at a glance',
-      'Multi-language and multi-branch ready'
+      'Multi-language and multi-branch ready',
+      'Integrated booking and operations platform for massage shops and clinics',
+      'No staff needed; customers finish booking and payment in 2 minutes',
+      'Comprehensive online booking for massage, gyms and clinics',
+      'All-in-one membership: registration, VIP tiers, loyalty, flexible top-up rules',
+      'Complete payments ecosystem — Omise, credit cards, Line Pay, TrueMoney, etc.',
+      'Powerful back office — staff scheduling, intelligent booking, multi-tenant, real-time notifications'
     ],
     trust: 'Trusted by growing massage, fitness and spa businesses',
     privacy: 'Your info is only used to set up the trial and will never be shared.',
     form: {
       name: 'Full Name',
       phone: 'Phone Number',
-      industry: 'Industry',
+      industry: 'Industry (Optional)',
       companyOpt: 'Company (Optional)',
-      emailOpt: 'Email (Optional)',
+      emailOpt: 'Email Address',
       submit: 'Start Free Trial',
       submitting: 'Starting...'
     },
@@ -93,16 +99,22 @@ const content: Record<Language, BookingContent> = {
       '智能预约：用户自助下单，系统自动防冲突',
       '运营提效：自动排班、提醒、签到',
       '数据看板：预约量与营收实时可见',
-      '多语言多门店支持'
+      '多语言多门店支持',
+      '为按摩店与诊所打造的一体化预约与运营平台',
+      '无需人工服务，客户 2 分钟即可完成预约与支付',
+      '覆盖按摩、健身房、诊所的在线预约系统',
+      '一体化会员：注册、VIP 等级、忠诚度、灵活充值规则等',
+      '完整支付生态：Omise、信用卡、Line Pay、True Money 等',
+      '强大后台：员工排班、智能预约、多租户、实时通知等'
     ],
     trust: '被多家按摩/健身/美容门店选择与信赖',
     privacy: '你的信息仅用于开通试用，绝不外泄。',
     form: {
       name: '姓名',
       phone: '手机号',
-      industry: '行业',
+      industry: '行业（选填）',
       companyOpt: '公司（选填）',
-      emailOpt: '邮箱（选填）',
+      emailOpt: '邮箱地址',
       submit: '开始免费试用',
       submitting: '正在提交...'
     },
@@ -131,16 +143,22 @@ const content: Record<Language, BookingContent> = {
       'จองอัจฉริยะ: ลูกค้าจองเอง ระบบกันชนซ้ำ',
       'ทำงานไวขึ้น: จัดกะ อัปเดต แจ้งเตือนอัตโนมัติ',
       'ข้อมูลชัดเจน: ดูยอดจองและรายได้แบบเรียลไทม์',
-      'รองรับหลายภาษา หลายสาขา'
+      'รองรับหลายภาษา หลายสาขา',
+      'แพลตฟอร์มการจองและการดำเนินการแบบบูรณาการสำหรับร้านนวดและคลินิก',
+      'ไม่จำเป็นต้องให้บริการลูกค้า และลูกค้าใช้เวลาเพียง 2 นาทีในการกรอกการจองและชำระเงิน',
+      'ระบบจองออนไลน์ที่ครอบคลุมสำหรับร้านนวด ศูนย์ออกกำลังกาย และคลินิก',
+      'ระบบสมาชิกแบบครบวงจร ทั้งการลงทะเบียนสมาชิก ระดับ VIP ความภักดี และกฎการเติมเงินที่ยืดหยุ่น',
+      'ระบบนิเวศการชำระเงินที่สมบูรณ์แบบ — รวม Omise บัตรเครดิต Line Pay TrueMoney เป็นต้น',
+      'แบ็คเอนด์ทรงพลัง — จัดตารางพนักงาน การจองอัจฉริยะ หลายผู้เช่า การแจ้งเตือนแบบเรียลไทม์'
     ],
     trust: 'เป็นที่ไว้วางใจจากธุรกิจนวด ฟิตเนส และสปาที่กำลังเติบโต',
     privacy: 'ข้อมูลของคุณใช้เพื่อเปิดทดลองเท่านั้น และจะไม่ถูกเปิดเผย',
     form: {
       name: 'ชื่อ-นามสกุล',
       phone: 'เบอร์โทร',
-      industry: 'ประเภทธุรกิจ',
+      industry: 'ประเภทธุรกิจ (ไม่บังคับ)',
       companyOpt: 'บริษัท (ไม่บังคับ)',
-      emailOpt: 'อีเมล (ไม่บังคับ)',
+      emailOpt: 'อีเมล',
       submit: 'เริ่มทดลองใช้ฟรี',
       submitting: 'กำลังส่ง...'
     },
@@ -193,7 +211,6 @@ function BookingPage() {
   const currentContent = content[language];
 
   const validateEmail = (email: string): boolean => {
-    if (!email) return true;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
@@ -216,11 +233,11 @@ return phoneRegex.test(phone) && phone.replace(/[\s\-\(\)]/g, '').length >= 6;
       newErrors.name = currentContent.validation.required;
     }
 
-    if (!formData.industry.trim()) {
-      newErrors.industry = currentContent.validation.required;
-    }
+    // industry is optional
 
-    if (formData.email && !validateEmail(formData.email)) {
+    if (!formData.email?.trim()) {
+      newErrors.email = currentContent.validation.required;
+    } else if (!validateEmail(formData.email)) {
       newErrors.email = currentContent.validation.emailInvalid;
     }
 
@@ -442,18 +459,7 @@ if (window.gtag) {
           </div>
           <div className="bg-gradient-to-br from-pink-50 to-blue-50 border border-pink-100 rounded-2xl p-6">
             <ul className="space-y-3">
-              {(() => {
-                const extraTh: string[] = [
-                  'แพลตฟอร์มการจองและการดำเนินการแบบบูรณาการสำหรับร้านนวดและคลินิก',
-                  'ไม่จำเป็นต้องให้บริการลูกค้า และลูกค้าใช้เวลาเพียง 2 นาทีในการกรอกการจองและชำระเงิน',
-                  'ระบบจองออนไลน์ที่ครอบคลุมสำหรับร้านนวด ศูนย์ออกกำลังกาย และคลินิก',
-                  'ระบบสมาชิกแบบครบวงจร ทั้งการลงทะเบียนสมาชิก การจัดการระดับ VIP ความภักดี และกฎการเติมเงินที่ยืดหยุ่น เป็นต้น',
-                  'ระบบนิเวศการชำระเงินที่สมบูรณ์แบบ - การบูรณาการ Omise รวมถึงบัตรเครดิต Line Pay, True Money ฯลฯ',
-                  'ระบบการจัดการแบ็คเอนด์อันทรงพลัง - รวมถึงการจัดตารางพนักงาน การจองอัจฉริยะ สถาปัตยกรรมผู้เช่าหลายราย การแจ้งเตือนแบบเรียลไทม์ ฯลฯ',
-                ];
-                const list = language === 'th' ? [...currentContent.valueBullets, ...extraTh] : currentContent.valueBullets;
-                return list;
-              })().map((b, i) => (
+              {currentContent.valueBullets.map((b, i) => (
                 <li key={i} className="flex items-start text-gray-800">
                   <span className="mr-3 text-green-600">✓</span>
                   <span>{b}</span>
@@ -518,10 +524,10 @@ if (window.gtag) {
                 )}
               </div>
 
-              {/* Industry Field */}
+              {/* Industry Field (Optional) */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {currentContent.form.industry} *
+                  {currentContent.form.industry}
                 </label>
                 <div className="relative">
                   <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">🏷️</span>
@@ -557,10 +563,10 @@ if (window.gtag) {
                 </div>
               </div>
 
-              {/* Email Field (Optional) */}
+              {/* Email Field (Required) */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {currentContent.form.emailOpt}
+                  {currentContent.form.emailOpt} *
                 </label>
                 <div className="relative">
                   <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">✉️</span>
