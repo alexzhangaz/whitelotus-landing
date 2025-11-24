@@ -54,6 +54,7 @@ const content: Record<Language, BookingContent> = {
     valueBullets: [
       'Smart Booking: customer self-book, auto conflict prevention',
       'Faster Ops: auto scheduling, reminders, check-in',
+      'Social Media Integration: seamless Line/FB/IG embedding',
       'Insights: daily bookings and revenue at a glance',
       'Multi-language and multi-branch ready',
       'Integrated booking and operations platform for massage shops and clinics',
@@ -98,6 +99,7 @@ const content: Record<Language, BookingContent> = {
     valueBullets: [
       '智能预约：用户自助下单，系统自动防冲突',
       '运营提效：自动排班、提醒、签到',
+      '社交媒体嵌入：Line/FB/IG无缝嵌入',
       '数据看板：预约量与营收实时可见',
       '多语言多门店支持',
       '为按摩店与诊所打造的一体化预约与运营平台',
@@ -142,6 +144,7 @@ const content: Record<Language, BookingContent> = {
     valueBullets: [
       'จองอัจฉริยะ: ลูกค้าจองเอง ระบบกันชนซ้ำ',
       'ทำงานไวขึ้น: จัดกะ อัปเดต แจ้งเตือนอัตโนมัติ',
+      'การเชื่อมต่อโซเชียลมีเดีย: ฝัง Line/FB/IG แบบไร้รอยต่อ',
       'ข้อมูลชัดเจน: ดูยอดจองและรายได้แบบเรียลไทม์',
       'รองรับหลายภาษา หลายสาขา',
       'แพลตฟอร์มการจองและการดำเนินการแบบบูรณาการสำหรับร้านนวดและคลินิก',

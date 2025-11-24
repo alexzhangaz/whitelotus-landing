@@ -122,9 +122,9 @@ const content: Record<Language, Content> = {
             'Online appointments with real-time availability and lifecycle status control.',
         },
         {
-          title: 'Room & Facility Control',
+          title: 'Line/FB/IG Seamless Integration',
           description:
-            'Reserve rooms, track usage, monitor cleaning and occupancy.',
+            'Direct booking from Line, Facebook, and Instagram. Customers can book without leaving their favorite social platforms.',
         },
         {
           title: 'Payment Ecosystem',
@@ -254,9 +254,9 @@ const content: Record<Language, Content> = {
             '在线预约，实时可用性、状态生命周期管理。',
         },
         {
-          title: '房间与设施管理',
+          title: 'Line/FB/IG无缝连接',
           description:
-            '房间预约、使用跟踪、清洁与占用监控。',
+            '无缝连接Line、Facebook、Instagram，客户可直接在社交平台预约，无需跳转。',
         },
         {
           title: '支付生态',
@@ -386,9 +386,9 @@ const content: Record<Language, Content> = {
             'การนัดหมายออนไลน์พร้อมสถานะแบบเรียลไทม์และการจัดการวงจรชีวิต',
         },
         {
-          title: 'การควบคุมห้อง',
+          title: 'เชื่อมต่อ Line/FB/IG แบบไร้รอยต่อ',
           description:
-            'สำรองห้อง ติดตามการใช้งาน ตรวจสอบความสะอาดและการครอบครอง',
+            'เชื่อมต่อ Line, Facebook, Instagram โดยตรง ลูกค้าจองได้จากแพลตฟอร์มโซเชียลที่ชื่นชอบโดยไม่ต้องออกจากแอป',
         },
         {
           title: 'ระบบการชำระเงิน',
