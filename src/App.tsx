@@ -100,7 +100,7 @@ const content: Record<Language, Content> = {
     hero: {
       title: 'All-in-One Booking & Operations Platform',
       subtitle:
-        'Member, coach, room, payment, multi-tenant, smart notifications, and analytics—unified for massage, fitness & spa businesses.',
+        'Member, coach, room, payment, multi-tenant, smart notifications, ERP, CRM, and analytics—unified for massage, fitness & spa businesses.',
       cta: 'Start Free Trial',
     },
     features: {
